@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Arrays;
 
 class Board implements Ilayout, Cloneable {
     private static final int dim = 3;
@@ -49,14 +48,14 @@ class Board implements Ilayout, Cloneable {
 
         Board that = (Board) o; //cast para tipo Board
 
-            for(int i = 0; i < board.length; i++){
+        for(int i = 0; i < board.length; i++){
 
-                for(int j = 0; j < board[i].length; j++){
+            for(int j = 0; j < board[i].length; j++){
 
-                    if( this.board[i][j] != that.board[i][j]) return false;
-                }
+                if( this.board[i][j] != that.board[i][j]) return false;
             }
-            return true;
+        }
+        return true;
 
     }
 
