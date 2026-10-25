@@ -74,6 +74,23 @@ class BallSortLayout implements Ilayout {
     }
 
     @Override
+    public double getH() {
+        int[] sum = new int[128], max = new int[128];
+        int h = 0;
+        for (int t = 0; t < tubes; t++) {
+            if (size[t] == 0) continue;
+            char c = tube[t][0];
+            int p = 1;
+            while (p < size[t] && tube[t][p] == c) p++;
+            h += size[t] - p;
+            sum[c] += p;
+            if (p > max[c]) max[c] = p;
+        }
+        for (int c = 0; c < 128; c++) h += sum[c] - max[c];
+        return h;
+    }
+
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (int row = 0; row < height; row++) {

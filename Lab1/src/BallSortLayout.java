@@ -56,7 +56,7 @@ class BallSortLayout implements Ilayout {
         return sucs;
     }
 
-    /** O objetivo e implicito: todos os tubos vazios ou cheios com uma so cor. O argumento nao e usado. */
+
     @Override
     public boolean isGoal(Ilayout l) {
         for (int t = 0; t < tubes; t++) {
@@ -73,7 +73,6 @@ class BallSortLayout implements Ilayout {
         return 1.0;
     }
 
-    /** Mesmo formato do input (de cima para baixo), 'E' para espaco vazio. */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

@@ -9,7 +9,7 @@ class BestFirst {
     static class State {
         private Ilayout layout;
         private State father;
-        private double g;
+        private double g, h;
 
         public State(Ilayout l, State n) {
             layout = l;
@@ -17,10 +17,12 @@ class BestFirst {
             if (father != null)
                 g = father.g + l.getK();
             else g = 0.0;
+            h = l.getH();
         }
 
         public String toString() { return layout.toString(); }
         public double getG() { return g; }
+        public double getF() { return g + h; }
         public int hashCode() { return toString().hashCode(); }
 
         public boolean equals(Object o) {
@@ -45,14 +47,15 @@ class BestFirst {
 
     final public Iterator<State> solve(Ilayout s, Ilayout goal) {
         this.objective = goal;
-        abertos = new PriorityQueue<>(10,
-                (s1, s2) -> (int) Math.signum(s1.getG() - s2.getG()));
+        abertos = new PriorityQueue<>(10, (s1, s2) -> {
+            int c = Double.compare(s1.getF(), s2.getF());
+            return c != 0 ? c : Double.compare(s2.getG(), s1.getG());
+        });
         fechados = new HashMap<>();
         abertos.add(new State(s, null));
         List<State> sucs;
-        // TODO: Complete the search using the diagram in the guide.
-
-        while(!abertos.isEmpty()){  //até ficarmos sem opcoes para testar
+        
+        while(!abertos.isEmpty()){  
 
             actual = abertos.poll();
 
@@ -75,9 +78,18 @@ class BestFirst {
 
             for(State child : sucs){
 
-                if(!fechados.containsKey(child.layout) && !abertos.contains(child)){
+                if(!fechados.containsKey(child.layout)){
 
-                    abertos.add(child);
+                    State old = null;
+                    for(State st : abertos)
+                        if(st.equals(child)){ old = st; break; }
+
+                    if(old == null){
+                        abertos.add(child);
+                    } else if(child.getG() < old.getG()){
+                        abertos.remove(old);
+                        abertos.add(child);
+                    }
                 }
             }
         }
