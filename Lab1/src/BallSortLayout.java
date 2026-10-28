@@ -74,6 +74,11 @@ class BallSortLayout implements Ilayout {
     }
 
     @Override
+    public double getH() {
+        return 0.0;
+    }
+    
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (int row = 0; row < height; row++) {
