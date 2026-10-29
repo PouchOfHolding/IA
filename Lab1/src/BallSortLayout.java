@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-class BallSortLayout implements Ilayout {
+class BallSortLayout implements Ilayout { 
     private final int height;
     private final int tubes;
     private final char[][] tube;
