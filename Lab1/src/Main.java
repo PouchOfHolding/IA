@@ -17,6 +17,12 @@ public class Main {
                 throw new IllegalArgumentException(); // lança exceção caso o input seja inválido 
             configuration.append(line).append('\n'); //acumula o input para passar para a pesquisa
         }
+
+        // se quisermos imprimir apenas os filhoss
+        //BallSortLayout inicial= new BallSortLayout(configuration.toString());
+        //for(Ilayout f: inicial.children()) System.out.println(f);
+
+
         BestFirst s = new BestFirst(); // cria o algoritmo de pesquisa
         Iterator<BestFirst.State> it = 
                 s.solve(new BallSortLayout(configuration.toString()), null);

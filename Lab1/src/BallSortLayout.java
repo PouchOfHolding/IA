@@ -27,6 +27,20 @@ class BallSortLayout implements Ilayout {
         }
     }
 
+    //se eu quiser imprimir um tudo em especifico, crio novo metodo
+    //public String TubeToString(int t) {
+        //StringBuilder sb= new StringBuilder();//cria um StringBuilder para acumular os caracteres do tubo
+        //for (int p=0; p<size [t];p++) sb.append(tube[t][p]); //percorre o tubo e adiciona os caracteres ao StringBuilder
+        //return sb.toString(); //retorna a string acumulada
+    //}
+
+    //indice onde está uma cor em especifico
+    /**public void printIndex (char c){
+     * for (int t=0; t<tubes; t++)
+     *   for (int p=0; p<size(t); p++)
+     *       if (tube(t)[p]==c) System.out.println("ball "+c+" is in tube "+t+" at position "+p);
+    } */
+
 
     private BallSortLayout(BallSortLayout o) {
         height = o.height;
@@ -73,11 +87,21 @@ class BallSortLayout implements Ilayout {
         return 1.0;
     }
 
-    @Override
     public double getH() {
         return 0.0;
     }
     
+
+
+    // inverter  a ordem dos tubos
+    /* public String tString(){
+    StringBuilder sb= new StringBuilder();
+    for (int t= tubes -1; t>=0; t--){
+        if (t>tubes-1) sb.append(' ');
+        for (int p=0; p<size[t]; p++) sb.append(tube[t][p]);
+    }
+    return sb.toString();
+} */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
